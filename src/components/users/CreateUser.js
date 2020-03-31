@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
+import { createUser } from "../../actions/userAction";
+import { connect } from "react-redux";
 
-export default class CreateUser extends Component {
+class CreateUser extends Component {
   state = {
     firstName: "",
     lastName: " ",
@@ -10,6 +12,7 @@ export default class CreateUser extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(this.state);
+    this.props.createUser(this.state);
   };
   handleChange = (e) => {
     this.setState({
@@ -78,3 +81,13 @@ export default class CreateUser extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createUser: (user) => {
+      dispatch(createUser(user));
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CreateUser);

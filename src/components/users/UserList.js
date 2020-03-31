@@ -2,13 +2,13 @@ import React from "react";
 
 import UserContent from "./UserContent";
 
-function UserList() {
+function UserList({ users }) {
   return (
     <div>
-      <UserContent />
-      <UserContent />
-      <UserContent />
-      <UserContent />
+      {users &&
+        users.map((user) => {
+          return <UserContent user={user} key={user.firstName} />;
+        })}
     </div>
   );
 }
