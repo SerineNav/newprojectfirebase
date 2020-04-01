@@ -1,13 +1,12 @@
 export const createUser = (user) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    const fireStore = getFirestore();
-    fireStore
-      .collection("client")
+    const firestore = getFirestore();
+    firestore
+      .collection("users")
       .add({
         ...user,
-        firstName: "Sara",
-        lastName: "Jones",
-        email: "Sara@gmail.com"
+        id: 12,
+        age: 20
       })
       .then(() => {
         dispatch({

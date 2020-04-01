@@ -84,9 +84,7 @@ class CreateUser extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createUser: (user) => {
-      dispatch(createUser(user));
-    }
+    createUser: (user) => dispatch(createUser(user))
   };
 };
 
