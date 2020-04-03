@@ -6,7 +6,7 @@ export const createUser = (user) => {
       .add({
         ...user,
         id: 12,
-        age: 20
+        balance: "100$"
       })
       .then(() => {
         dispatch({

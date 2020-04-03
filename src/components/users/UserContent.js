@@ -1,19 +1,20 @@
 import React from "react";
-import { Card, ListGroup } from "react-bootstrap";
+import { Card, ListGroup, Table } from "react-bootstrap";
 
 function UserContent({ user }) {
   return (
     <div>
-      <Card
-        style={{ width: "18rem", marginLeft: "25px", marginBottom: "20px" }}
-      >
-        <Card.Header>User ID</Card.Header>
-        <ListGroup variant="flush">
-          <ListGroup.Item>{user.firstName}</ListGroup.Item>
-          <ListGroup.Item>{user.lastName}</ListGroup.Item>
-          <ListGroup.Item>{user.email}</ListGroup.Item>
-        </ListGroup>
-      </Card>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>{user.firstName}</th>
+            <th>{user.lastName}</th>
+            <th>{}</th>
+            <th>{user.email}</th>
+          </tr>
+        </thead>
+      </Table>
     </div>
   );
 }

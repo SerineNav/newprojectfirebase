@@ -23,6 +23,7 @@ class CreateUser extends Component {
     return (
       <div style={{ width: "600px", marginTop: "25px", marginLeft: "25px" }}>
         <h2>Create new user</h2>
+
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Row>
