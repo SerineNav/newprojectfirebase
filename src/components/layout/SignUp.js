@@ -19,6 +19,7 @@ class SignUp extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(this.state);
+    this.props.signUp(this.state);
   };
   handleChange = (e) => {
     this.setState({
@@ -26,7 +27,7 @@ class SignUp extends Component {
     });
   };
   render() {
-    const { auth } = this.props;
+    const { auth, authError } = this.props;
     if (auth.uid) return <Redirect to="/" />;
     return (
       <div style={{ width: "600px", marginTop: "25px", marginLeft: "25px" }}>
@@ -115,6 +116,16 @@ class SignUp extends Component {
             Sign Up
           </Button>
         </Form>
+        <div
+          style={{
+            width: "600px",
+            marginTop: "25px",
+            marginLeft: "25px",
+            textAlign: "center",
+          }}
+        >
+          {authError ? <p>{authError}</p> : null}
+        </div>
       </div>
     );
   }

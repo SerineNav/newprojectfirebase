@@ -33,13 +33,13 @@ class Dashboard extends Component {
 }
 const mapStateToProps = (state) => {
   console.log(state);
-  return { users: state.firestore.ordered.users, auth: state.firebase.auth };
+  return { users: state.firestore.ordered.clients, auth: state.firebase.auth };
 };
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
     {
-      collection: "users",
+      collection: "clients",
     },
   ])
 )(Dashboard);

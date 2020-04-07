@@ -2,11 +2,9 @@ export const createUser = (user) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
     firestore
-      .collection("users")
+      .collection("clients")
       .add({
         ...user,
-
-        valuta: "USD",
       })
       .then(() => {
         dispatch({
