@@ -1,9 +1,5 @@
 const initialState = {
-  users: [
-    { firstName: "Amili", lastName: " Smith", email: "amili@gmail.com" },
-    { firstName: "Jhon", lastName: " Doe", email: "jhon@gmail.com" },
-    { firstName: "Robert", lastName: " Lambert", email: "robert@gmail.com" }
-  ]
+  users: [],
 };
 const userReducer = (state = initialState, action) => {
   switch (action.type) {

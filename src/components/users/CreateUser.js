@@ -7,7 +7,7 @@ class CreateUser extends Component {
   state = {
     firstName: "",
     lastName: " ",
-    email: " "
+    email: " ",
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -16,12 +16,12 @@ class CreateUser extends Component {
   };
   handleChange = (e) => {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
   render() {
     return (
-      <div style={{ width: "600px", marginTop: "25px", marginLeft: "25px" }}>
+      <div style={{ width: "600px", marginTop: "25px", marginLeft: "30px" }}>
         <h2>Create new user</h2>
 
         <Form onSubmit={this.handleSubmit}>
@@ -60,14 +60,46 @@ class CreateUser extends Component {
           <Form.Group>
             <Form.Row>
               <Form.Label column lg={2}>
-                LastName
+                Balance
+              </Form.Label>
+              <Col>
+                <Form.Control
+                  onChange={this.handleChange}
+                  type="number"
+                  id="balance"
+                  placeholder="balance"
+                />
+              </Col>
+            </Form.Row>
+          </Form.Group>
+          <br />
+          <Form.Group>
+            <Form.Row>
+              <Form.Label column lg={2}>
+                Valuta
+              </Form.Label>
+              <Col>
+                <Form.Control
+                  onChange={this.handleChange}
+                  type="text"
+                  id="valuta"
+                  placeholder="valuta"
+                />
+              </Col>
+            </Form.Row>
+          </Form.Group>
+          <br />
+          <Form.Group>
+            <Form.Row>
+              <Form.Label column lg={2}>
+                Email
               </Form.Label>
               <Col>
                 <Form.Control
                   onChange={this.handleChange}
                   type="email"
                   id="email"
-                  placeholder="Email"
+                  placeholder="email"
                 />
               </Col>
             </Form.Row>
@@ -85,7 +117,7 @@ class CreateUser extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createUser: (user) => dispatch(createUser(user))
+    createUser: (user) => dispatch(createUser(user)),
   };
 };
 

@@ -5,6 +5,9 @@ import "./App.css";
 import Dashboard from "./components/dashboard/Dashboard";
 import UserInformation from "./components/users/UserInformation";
 import CreateUser from "./components/users/CreateUser";
+import SignIn from "./components/layout/SignIn";
+import SignUp from "./components/layout/SignUp";
+import LogOut from "./components/layout/LogOut";
 
 export default class App extends Component {
   render() {
@@ -16,6 +19,9 @@ export default class App extends Component {
             <Route exact path="/" component={Dashboard} />
             <Route path="/user/:id" component={UserInformation} />
             <Route path="/create" component={CreateUser} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/signout" component={LogOut} />
           </Switch>
         </div>
       </Router>

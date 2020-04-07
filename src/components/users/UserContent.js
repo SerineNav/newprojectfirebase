@@ -6,11 +6,12 @@ function UserContent({ user }) {
     <div>
       <Table striped bordered hover>
         <thead>
-          <tr>
-            <th>#</th>
+          <tr style={{ textAlign: "center" }}>
+            <th># {user.id}</th>
             <th>{user.firstName}</th>
             <th>{user.lastName}</th>
-            <th>{}</th>
+            <th>{user.balance}</th>
+            <th>{user.valuta}</th>
             <th>{user.email}</th>
           </tr>
         </thead>

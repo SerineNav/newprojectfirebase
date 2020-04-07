@@ -5,19 +5,19 @@ export const createUser = (user) => {
       .collection("users")
       .add({
         ...user,
-        id: 12,
-        balance: "100$"
+
+        valuta: "USD",
       })
       .then(() => {
         dispatch({
           type: "ADD_USER",
-          user: user
+          user: user,
         });
       })
       .catch((err) => {
         dispatch({
           type: "ADD_USER_ERROR",
-          err: err
+          err: err,
         });
       });
   };

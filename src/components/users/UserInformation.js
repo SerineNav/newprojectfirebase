@@ -1,23 +1,45 @@
 import React from "react";
 import { Card, ListGroup, Table } from "react-bootstrap";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 
 function UserInformation(props) {
-  const id = props.match.params.id;
-  return (
-    <div>
-      <Table striped bordered hover size="sm">
-        <thead>
-          <tr>
-            <th># {id}</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>User Email</th>
-            <th>Balance</th>
-          </tr>
-        </thead>
-      </Table>
-    </div>
-  );
+  const { user } = props;
+  console.log(props);
+  if (user) {
+    return (
+      <div>
+        <Table striped bordered hover size="sm">
+          <thead>
+            <tr style={{ textAlign: "center" }}>
+              <th># {user.id}</th>
+              <th>{user.firstName}</th>
+              <th>{user.lastName}</th>
+              <th>{user.balance}</th>
+              <th>{user.valuta}</th>
+              <th>{user.email}</th>
+            </tr>
+          </thead>
+        </Table>
+      </div>
+    );
+  }
+  return <div>No any user...</div>;
 }
 
-export default UserInformation;
+const mapStateToProps = (state, ownProps) => {
+  console.log(state);
+  const id = ownProps.match.params.id;
+  const users = state.firestore.data.users;
+  const user = users ? users[id] : null;
+  return { user: user };
+};
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    {
+      collection: "users",
+    },
+  ])
+)(UserInformation);

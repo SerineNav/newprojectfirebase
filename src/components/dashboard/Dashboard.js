@@ -10,7 +10,7 @@ class Dashboard extends Component {
     console.log(this.props);
     const { users } = this.props;
     return (
-      <div>
+      <div style={{ width: "800px", marginTop: "25px", marginLeft: "100px" }}>
         <p>Dashboard</p>
         <Table striped bordered hover variant="secondary">
           <thead>
@@ -19,6 +19,7 @@ class Dashboard extends Component {
               <th>First Name</th>
               <th>Last Name</th>
               <th>Balance</th>
+              <th>Valuta</th>
               <th>Email</th>
             </tr>
           </thead>
@@ -36,7 +37,7 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect([
     {
-      collection: "users"
-    }
+      collection: "users",
+    },
   ])
 )(Dashboard);
