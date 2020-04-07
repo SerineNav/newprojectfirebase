@@ -19,9 +19,9 @@ export default class App extends Component {
             <Route exact path="/" component={Dashboard} />
             <Route path="/user/:id" component={UserInformation} />
             <Route path="/create" component={CreateUser} />
+            <Route path="/logout" component={LogOut} />
             <Route path="/signup" component={SignUp} />
             <Route path="/signin" component={SignIn} />
-            <Route path="/signout" component={LogOut} />
           </Switch>
         </div>
       </Router>

@@ -4,11 +4,13 @@ import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
+import { Redirect } from "react-router-dom";
 
 class Dashboard extends Component {
   render() {
     console.log(this.props);
-    const { users } = this.props;
+    const { users, auth } = this.props;
+    if (!auth.uid) return <Redirect to="/signin" />;
     return (
       <div style={{ width: "800px", marginTop: "25px", marginLeft: "100px" }}>
         <p>Dashboard</p>
@@ -31,7 +33,7 @@ class Dashboard extends Component {
 }
 const mapStateToProps = (state) => {
   console.log(state);
-  return { users: state.firestore.ordered.users };
+  return { users: state.firestore.ordered.users, auth: state.firebase.auth };
 };
 export default compose(
   connect(mapStateToProps),

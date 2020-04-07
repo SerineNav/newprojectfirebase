@@ -11,8 +11,8 @@ import { connect } from "react-redux";
 
 function Navbarc(props) {
   const { auth } = props;
-  console.log(auth);
-  // const links = auth.uid ? <SigninLinks /> : <SignoutLinks />;
+  console.log(auth.uid);
+  const links = auth.uid ? <SignoutLinks /> : <SigninLinks />;
   return (
     <div>
       <Navbar bg="dark" variant="dark">
@@ -27,12 +27,9 @@ function Navbarc(props) {
           {"  "}
           Matadors
         </Link>
-        <Home />
-        <User />
-        <SigninLinks />
-        <SignoutLinks />
-        {/* {links} */}
-        <LogOut />
+        {/* <SigninLinks />
+        <SignoutLinks /> */}
+        {links}
       </Navbar>
     </div>
   );

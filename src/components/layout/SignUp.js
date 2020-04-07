@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { signUp } from "../../actions/autActions";
+import { Redirect } from "react-router-dom";
 
 class SignUp extends Component {
   state = {
@@ -25,6 +26,8 @@ class SignUp extends Component {
     });
   };
   render() {
+    const { auth } = this.props;
+    if (auth.uid) return <Redirect to="/" />;
     return (
       <div style={{ width: "600px", marginTop: "25px", marginLeft: "25px" }}>
         <Form onSubmit={this.handleSubmit}>
@@ -122,7 +125,7 @@ const mapStateToProps = (state) => {
 };
 const mapDisputchToProps = (dipatch) => {
   return {
-    signIn: (newUser) => dipatch(signIn(newUser)),
+    signUp: (newUser) => dipatch(signUp(newUser)),
   };
 };
 export default connect(mapStateToProps, mapDisputchToProps)(SignUp);

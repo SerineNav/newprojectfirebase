@@ -1,5 +1,3 @@
-import { firebaseConnect } from "react-redux-firebase";
-
 export const signIn = (fields) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
@@ -17,6 +15,18 @@ export const signIn = (fields) => {
           type: "LOGIN_ERROR",
           err: err,
         });
+      });
+  };
+};
+
+export const logOut = () => {
+  return (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase();
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch({ type: "LOGOUT_SUCCESS" });
       });
   };
 };

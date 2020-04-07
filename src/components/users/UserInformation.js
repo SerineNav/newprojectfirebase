@@ -3,9 +3,12 @@ import { Card, ListGroup, Table } from "react-bootstrap";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
+import { Redirect } from "react-router-dom";
 
 function UserInformation(props) {
-  const { user } = props;
+  const { user, auth } = props;
+
+  if (!auth.uid) return <Redirect to="/signin" />;
   console.log(props);
   if (user) {
     return (
@@ -33,7 +36,7 @@ const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
   const users = state.firestore.data.users;
   const user = users ? users[id] : null;
-  return { user: user };
+  return { user: user, auth: state.firebase.auth };
 };
 export default compose(
   connect(mapStateToProps),

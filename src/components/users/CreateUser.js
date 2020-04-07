@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
 import { createUser } from "../../actions/userAction";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 class CreateUser extends Component {
   state = {
@@ -20,6 +21,8 @@ class CreateUser extends Component {
     });
   };
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to="/signin" />;
     return (
       <div style={{ width: "600px", marginTop: "25px", marginLeft: "30px" }}>
         <h2>Create new user</h2>
@@ -36,6 +39,7 @@ class CreateUser extends Component {
                   type="text"
                   id="firstName"
                   placeholder="firstName"
+                  required
                 />
               </Col>
             </Form.Row>
@@ -52,6 +56,7 @@ class CreateUser extends Component {
                   type="text"
                   id="lastName"
                   placeholder="lastName"
+                  required
                 />
               </Col>
             </Form.Row>
@@ -68,6 +73,7 @@ class CreateUser extends Component {
                   type="number"
                   id="balance"
                   placeholder="balance"
+                  required
                 />
               </Col>
             </Form.Row>
@@ -100,6 +106,7 @@ class CreateUser extends Component {
                   type="email"
                   id="email"
                   placeholder="email"
+                  required
                 />
               </Col>
             </Form.Row>
@@ -115,10 +122,15 @@ class CreateUser extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  console.log(state);
+  return { auth: state.firebase.auth };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     createUser: (user) => dispatch(createUser(user)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(CreateUser);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateUser);
